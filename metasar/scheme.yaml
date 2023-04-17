@@ -1,0 +1,326 @@
+
+scheme1:
+    seed: 2020
+
+    dstrain: 
+        name: ['EasyPoints']
+        ntasks: [1500]
+    dsvalid:
+        name: ['EasyPoints']
+        ntasks: [20]
+    dstest: 
+        name: ['EasyPointShapes']
+        ntasks: [20]
+
+    nnmode: 'mf'  # 'echo' or 'mf'
+    nnvtype: 'real'  # or 'complex'
+    kernel_size: 3
+    channels: 64
+
+    loss:
+        funcstr: ["tb.SSELoss(cdim=1, dim=(2, 3), keepcdim=True, reduction='mean')",
+                    ]
+        weight: [1.0]
+
+    cnn:
+        bsize: 20
+        optimizer: "th.optim.Adam(net.parameters(), lr=0.001)"
+        scheduler: null
+        nnfile: 'SingleAverage.pth.tar'
+
+    maml:
+        lrfast: 1.e-7
+        bsize: 10
+        sadapt: 2
+        optimizer: "th.optim.Adam(maml.parameters(), lr=0.001)"
+        scheduler: null
+        nnfile: 'SingleAverage.pth.tar'
+
+    nepochs: 1500
+    scheck: 10
+
+scheme2:
+    seed: 2020
+
+    dstrain: 
+        name: ['EasyPoints']
+        ntasks: [1500]
+    dsvalid:
+        name: ['EasyPoints']
+        ntasks: [20]
+    dstest: 
+        # name: ['EasyPointShapes']
+        # name: ['HardPointShapes']
+        name: ['HardPoints']
+        ntasks: [20]
+
+    nnmode: 'mf'  # 'echo' or 'mf'
+    nnvtype: 'real'  # or 'complex'
+    kernel_size: 3
+    channels: 64
+
+    loss:
+        funcstr: ["tb.MSELoss(cdim=1, dim=(2, 3), keepcdim=True, reduction='mean')",
+                    ]
+        weight: [1.0]
+
+    cnn:
+        bsize: 20
+        optimizer: "th.optim.Adam(net.parameters(), lr=0.001)"
+        scheduler: null
+        nnfile: 'SingleAverage.pth.tar'
+
+    maml:
+        lrfast: 0.01
+        bsize: 10
+        sadapt: 3
+        optimizer: "th.optim.Adam(maml.parameters(), lr=0.001)"
+        scheduler: null
+        nnfile: 'SingleAverage.pth.tar'
+
+    nepochs: 1500
+    scheck: 10
+
+scheme3:
+    seed: 2020
+
+    dstrain: 
+        name: ['EasyPoints']
+        ntasks: [1500]
+    dsvalid:
+        name: ['EasyPoints']
+        ntasks: [20]
+    dstest: 
+        name: ['EasyPointShapes']
+        ntasks: [20]
+
+    nnmode: 'mf'  # 'echo' or 'mf'
+    nnvtype: 'real'  # or 'complex'
+    kernel_size: 3
+    channels: 64
+
+    loss:
+        funcstr: ["tb.SSELoss(cdim=1, dim=(2, 3), keepcdim=True, reduction='mean')",
+                  "tb.FourierLoss(err='mae', cdim=1, ftdim=(2, 3), keepcdim=True, reduction='mean')",
+                  ]
+        weight: [0.8, 0.2]
+
+    cnn:
+        bsize: 20
+        optimizer: "th.optim.Adam(net.parameters(), lr=0.001)"
+        scheduler: "th.optim.lr_scheduler.StepLR(optimizer, step_size=400, gamma=0.1, last_epoch=-1)"
+        nnfile: 'SingleAverage.pth.tar'
+
+    maml:
+        lrfast: 1.e-3
+        bsize: 10
+        sadapt: 2
+        optimizer: "th.optim.Adam(maml.parameters(), lr=0.001)"
+        scheduler: "th.optim.lr_scheduler.StepLR(optimizer, step_size=400, gamma=0.1, last_epoch=-1)"
+        nnfile: 'SingleAverage.pth.tar'
+
+    nepochs: 1500
+    scheck: 10
+
+
+scheme4:
+    seed: 2020
+
+    dstrain: 
+        name: ['EasyPoints']
+        ntasks: [1500]
+    dsvalid:
+        name: ['EasyPoints']
+        ntasks: [20]
+    dstest: 
+        name: ['EasyPointShapes']
+        ntasks: [20]
+
+    nnmode: 'mf'  # 'echo' or 'mf'
+    nnvtype: 'real'  # or 'complex'
+    kernel_size: 3
+    channels: 64
+
+    loss:
+        funcstr: ["tb.SAELoss(cdim=1, dim=(2, 3), keepcdim=True, reduction='mean')",
+                    ]
+        weight: [1.0]
+
+    cnn:
+        bsize: 20
+        optimizer: "th.optim.Adam(net.parameters(), lr=0.001)"
+        scheduler: "th.optim.lr_scheduler.StepLR(optimizer, step_size=400, gamma=0.1, last_epoch=-1)"
+        nnfile: 'SingleAverage.pth.tar'
+
+    maml:
+        lrfast: 1.e-3
+        bsize: 10
+        sadapt: 2
+        optimizer: "th.optim.Adam(maml.parameters(), lr=0.001)"
+        scheduler: "th.optim.lr_scheduler.StepLR(optimizer, step_size=400, gamma=0.1, last_epoch=-1)"
+        nnfile: 'epoch1478.pth.tar'
+
+    nepochs: 1500
+    scheck: 10
+
+scheme5:
+    seed: 2020
+
+    dstrain: 
+        name: ['EasyPoints']
+        ntasks: [1500]
+    dsvalid:
+        name: ['EasyPoints']
+        ntasks: [20]
+    dstest: 
+        name: ['EasyPointShapes']
+        ntasks: [20]
+
+    nnmode: 'mf'  # 'echo' or 'mf'
+    nnvtype: 'real'  # or 'complex'
+    kernel_size: 3
+    channels: 64
+    
+    loss:
+        funcstr: ["tb.MSELoss(cdim=1, dim=(2, 3), keepcdim=True, reduction='mean')",
+                  "tb.FourierLoss(err='mae', cdim=1, ftdim=(2, 3), keepcdim=True, reduction='mean')",
+                  ]
+        weight: [0.8, 0.2]
+
+    cnn:
+        bsize: 20
+        optimizer: "th.optim.Adam(net.parameters(), lr=0.001)"
+        scheduler: "th.optim.lr_scheduler.StepLR(optimizer, step_size=400, gamma=0.1, last_epoch=-1)"
+        nnfile: ''
+
+    maml:
+        lrfast: 1.e-3
+        bsize: 10
+        sadapt: 2
+        optimizer: "th.optim.Adam(maml.parameters(), lr=0.001)"
+        scheduler: "th.optim.lr_scheduler.StepLR(optimizer, step_size=400, gamma=0.1, last_epoch=-1)"
+        nnfile: ''
+
+    nepochs: 1500
+    scheck: 10
+
+
+scheme7:
+    seed: 2020
+
+    dstrain: 
+        name: ['HardPoints']
+        ntasks: [1500]
+    dsvalid:
+        name: ['HardPoints']
+        ntasks: [20]
+    dstest: 
+        name: ['HardPointShapes']
+        ntasks: [20]
+
+    nnmode: 'mf'  # 'echo' or 'mf'
+    nnvtype: 'real'  # or 'complex'
+    kernel_size: 3
+    channels: 64
+
+    loss:
+        funcstr: ["tb.MSELoss(cdim=1, dim=(2, 3), keepcdim=True, reduction='mean')",
+                    ]
+        weight: [1.0]
+
+    cnn:
+        bsize: 20
+        optimizer: "th.optim.Adam(net.parameters(), lr=0.001)"
+        scheduler: null
+        nnfile: 'SingleAverage.pth.tar'
+
+    maml:
+        lrfast: 0.01
+        bsize: 10
+        sadapt: 3
+        optimizer: "th.optim.Adam(maml.parameters(), lr=0.001)"
+        scheduler: null
+        nnfile: 'SingleAverage.pth.tar'
+
+    nepochs: 1500
+    scheck: 10
+
+scheme11:
+    seed: 2020
+
+    dstrain: 
+        name: ['EasyMSTAR']
+        ntasks: [1500]
+    dsvalid:
+        name: ['EasyMSTAR']
+        ntasks: [20]
+    dstest: 
+        name: ['EasyMSTAR']
+        ntasks: [20]
+
+    nnmode: 'mf'  # 'echo' or 'mf'
+    nnvtype: 'real'  # or 'complex'
+    kernel_size: 3
+    channels: 64
+
+    loss:
+        funcstr: ["tb.SSELoss(cdim=1, dim=(2, 3), keepcdim=True, reduction='mean')",
+                    ]
+        weight: [1.0]
+
+    cnn:
+        bsize: 20
+        optimizer: "th.optim.Adam(net.parameters(), lr=0.001)"
+        scheduler: null
+        nnfile: 'SingleAverage.pth.tar'
+
+    maml:
+        lrfast: 1.e-5
+        bsize: 10
+        sadapt: 2
+        optimizer: "th.optim.Adam(maml.parameters(), lr=0.001)"
+        scheduler: null
+        nnfile: 'SingleAverage.pth.tar'
+
+    nepochs: 3000
+    scheck: 10
+
+scheme12:
+    seed: 2020
+
+    dstrain: 
+        name: ['EasyMSTAR']
+        ntasks: [1500]
+    dsvalid:
+        name: ['EasyMSTAR']
+        ntasks: [20]
+    dstest: 
+        name: ['EasyMSTAR']
+        ntasks: [20]
+
+    nnmode: 'mf'  # 'echo' or 'mf'
+    nnvtype: 'real'  # or 'complex'
+    kernel_size: 3
+    channels: 64
+
+    loss:
+        funcstr: ["tb.SSELoss(cdim=1, dim=(2, 3), keepcdim=True, reduction='mean')",
+                  ]
+        weight: [1.]
+
+    cnn:
+        bsize: 20
+        optimizer: "th.optim.Adam(net.parameters(), lr=0.001)"
+        scheduler: "th.optim.lr_scheduler.StepLR(optimizer, step_size=10, gamma=0.98, last_epoch=-1)"
+        nnfile: 'SingleAverage.pth.tar'
+
+    maml:
+        lrfast: 1.e-5
+        bsize: 10
+        sadapt: 2
+        optimizer: "th.optim.Adam(maml.parameters(), lr=0.001)"
+        scheduler: "th.optim.lr_scheduler.StepLR(optimizer, step_size=10, gamma=0.98, last_epoch=-1)"
+        nnfile: 'SingleAverage.pth.tar'
+
+    nepochs: 3000
+    scheck: 10

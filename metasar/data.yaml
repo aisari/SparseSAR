@@ -1,0 +1,50 @@
+
+EasyPoints:
+  rootdir: null
+  degree: 'Easy'
+  scatter: 'Points'
+  EchoSize: [64, 64, 2]
+  SceneSize: [64, 64, 2]
+  ntasks: [1500, 20]
+  sarmodel: 'Sim4'
+  nspertask: 4
+
+EasyPointShapes:
+  rootdir: null
+  degree: 'Easy'
+  scatter: 'PointShapes'
+  EchoSize: [64, 64, 2]
+  SceneSize: [64, 64, 2]
+  ntasks: [20]
+  sarmodel: 'Sim4'
+  nspertask: 4
+
+EasyMSTAR:
+  rootdir: null
+  degree: 'Easy'
+  scatter: 'MSTAR'
+  EchoSize: [64, 64, 2]
+  SceneSize: [64, 64, 2]
+  ntasks: [1500, 20]
+  sarmodel: 'Sim4'
+  nspertask: 4
+
+HardPoints:
+  degree: 'Hard'
+  scatter: 'Points'
+  rootdir: null
+  EchoSize: [64, 64, 2]
+  SceneSize: [64, 64, 2]
+  ntasks: [1500, 20]
+  sarmodel: 'Sim4'
+  nspertask: 4
+
+HardPointShapes:
+  degree: 'Hard'
+  scatter: 'PointShapes'
+  rootdir: null
+  EchoSize: [64, 64, 2]
+  SceneSize: [64, 64, 2]
+  ntasks: [20]
+  sarmodel: 'Sim4'
+  nspertask: 4
